@@ -1,0 +1,122 @@
+import com.techlads.nentchallange.buildsrc.AndroidApp
+import com.techlads.nentchallange.buildsrc.Libs
+import com.techlads.nentchallange.buildsrc.Versions
+
+plugins {
+    id 'dagger.hilt.android.plugin'
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk AndroidApp.compileSdk
+
+    defaultConfig {
+        applicationId AndroidApp.applicationId
+
+        minSdk AndroidApp.minSdk
+        targetSdk AndroidApp.targetSdk
+        versionCode AndroidApp.versionCode
+        versionName AndroidApp.versionName
+
+        testInstrumentationRunner AndroidApp.testInstrumentationRunner
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        buildConfigField "String", "SERVER_URL", "$SERVER_URL"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Versions.compose
+        kotlinCompilerVersion Versions.kotlin_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation Libs.AndroidX.core_ktx
+    implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.material
+    implementation Libs.AndroidX.splash
+    implementation Libs.AndroidX.navigation
+
+    implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.preview
+
+    implementation Libs.AndroidX.Lifecycle.runtime
+    implementation Libs.AndroidX.Activity.activityCompose
+
+    implementation Libs.Accompanist.insets
+
+    // Coroutine work
+    implementation Libs.Kotlin.Coroutines.android
+
+    // Hilt
+    kapt Libs.Hilt.compiler
+    implementation Libs.Hilt.android
+    implementation Libs.Hilt.navigation
+
+    // Moshi
+    implementation Libs.moshi
+    kapt Libs.moshi_codegen
+
+    // Retrofit
+    implementation Libs.retrofit
+    implementation Libs.retrofit_moshi
+
+    // Okhttp
+    implementation(platform(Libs.okhttp_bom))
+    implementation(Libs.okhttp)
+    implementation(Libs.okhttp_interceptor)
+
+
+    // Storage(Room)
+    implementation Libs.AndroidX.room_runtime
+    implementation Libs.AndroidX.room_ktx
+    kapt Libs.AndroidX.room_compiler
+
+
+    // Debug implementation
+    debugImplementation Libs.AndroidX.Compose.tooling
+
+    // Unit testing
+    testImplementation Libs.JUnit.junit
+    testImplementation Libs.Test.truth
+
+    //  Android tests
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit_ktx
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
+    androidTestImplementation Libs.AndroidX.Compose.uiTest
+
+    androidTestImplementation Libs.Hilt.testing
+    kaptAndroidTest Libs.Hilt.testing_compiler
+}
