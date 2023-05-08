@@ -16,7 +16,7 @@ Hilt used for DI
 Devices usecase
 - Fetching all sections
 - Fetching section detail by href
-
+ 
 ## UI 
 Built with [Jetpack Compose.](https://developer.android.com/jetpack/compose)
 
