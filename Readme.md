@@ -1,8 +1,8 @@
 # Android Clean Code 
-This project is meant for Android MVVM Clean Code Getting started kit
+This project is meant for Android MVVM Clean Code Getting Started kit
 
 ## Features
-Project have 2 different screens
+The project have 2 different screens
 - Sections List
 - Sections Detail
 
@@ -13,7 +13,7 @@ Built with MVVM clean code.
 Hilt used for DI
 
 ## Usecases
-Devices usecase
+Devices use case
 - Fetching all sections
 - Fetching section detail by href
  
