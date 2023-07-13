@@ -38,4 +38,3 @@ Written using Kotlin
  
 ## Offline Support
 - Yes 
-
