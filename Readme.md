@@ -37,4 +37,7 @@ Written using Kotlin
 - Yes 
  
 ## Offline Support
+- Yes  
+- 
+## PR templete
 - Yes 
